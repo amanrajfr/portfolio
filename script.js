@@ -72,3 +72,31 @@ document.querySelectorAll('.tech-card, .project-card, .featured-project').forEac
     el.style.opacity = '0';
     observer.observe(el);
 });
+
+// ===== Theme Toggle (Dark/Light Mode) =====
+const themeToggles = document.querySelectorAll('.theme-toggle');
+const body = document.body;
+
+// Check local storage or system preference
+const getPreferredTheme = () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        return savedTheme;
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+};
+
+// Set theme on load
+if (getPreferredTheme() === 'dark') {
+    body.classList.add('dark-mode');
+}
+
+// Toggle logic
+themeToggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+        localStorage.setItem('theme', currentTheme);
+    });
+});
+

@@ -23,7 +23,23 @@
     --radius-pill: 50px;
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
     --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --transition: all 0.2s ease;
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+body.dark-mode {
+    --text-primary: #f3f4f6;
+    --text-secondary: #d1d5db;
+    --text-muted: #9ca3af;
+    --bg-white: #0f172a;
+    --bg-light: #1e293b;
+    --bg-card: #1e293b;
+    --border-light: #334155;
+    --gradient-start: rgba(167, 139, 250, 0.15);
+    --gradient-end: rgba(96, 165, 250, 0.15);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
 }
 
 html {
@@ -79,9 +95,16 @@ body {
     width: 100%;
     z-index: 100;
     padding: 16px 0;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+body.dark-mode .navbar {
+    background: rgba(15, 23, 42, 0.7);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .nav-container {
@@ -104,11 +127,18 @@ body {
 .nav-center {
     display: flex;
     align-items: center;
-    background: var(--bg-light);
+    background: rgba(248, 249, 250, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid var(--border-light);
     border-radius: var(--radius-pill);
     padding: 4px;
     gap: 0;
+    transition: background 0.3s ease;
+}
+
+body.dark-mode .nav-center {
+    background: rgba(30, 41, 59, 0.5);
 }
 
 .nav-link {
@@ -129,6 +159,11 @@ body {
     background: var(--bg-white);
     color: var(--text-primary);
     box-shadow: var(--shadow-sm);
+}
+
+body.dark-mode .nav-link:hover,
+body.dark-mode .nav-link.active {
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .nav-link i {
@@ -157,6 +192,39 @@ body {
 .nav-social a:hover {
     background: var(--bg-light);
     color: var(--accent-blue);
+    transform: scale(1.1);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: var(--text-primary);
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-left: 8px;
+}
+
+.theme-toggle:hover {
+    background: var(--bg-light);
+    color: var(--accent-blue);
+    transform: scale(1.1);
+}
+
+body.dark-mode .theme-toggle .fa-moon,
+.theme-toggle .fa-sun {
+    display: none;
+}
+
+body.dark-mode .theme-toggle .fa-sun {
+    display: inline-block;
 }
 
 .hamburger {
@@ -286,17 +354,29 @@ main {
     align-items: center;
     gap: 8px;
     padding: 20px 24px;
-    background: var(--bg-light);
-    border: 1px solid var(--border-light);
+    background: rgba(248, 249, 250, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: var(--radius-md);
     min-width: 100px;
     transition: var(--transition);
 }
 
+body.dark-mode .tech-card {
+    background: rgba(30, 41, 59, 0.5);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
 .tech-card:hover {
     background: var(--bg-white);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-5px) scale(1.05);
+    border-color: var(--accent-blue);
+}
+
+body.dark-mode .tech-card:hover {
+    background: rgba(30, 41, 59, 0.9);
 }
 
 .tech-card i {
@@ -438,15 +518,27 @@ main {
 
 .project-card {
     padding: 28px;
-    border: 1px solid var(--border-light);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: var(--radius-md);
-    background: var(--bg-white);
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     transition: var(--transition);
 }
 
+body.dark-mode .project-card {
+    background: rgba(30, 41, 59, 0.5);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
 .project-card:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-6px) scale(1.02);
+    border-color: var(--accent-blue);
+}
+
+body.dark-mode .project-card:hover {
+    background: rgba(30, 41, 59, 0.8);
 }
 
 .project-card h4 {
