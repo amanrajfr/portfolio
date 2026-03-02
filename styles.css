@@ -323,12 +323,78 @@ main {
     text-align: center;
 }
 
+.about-roles {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--accent-blue);
+    margin-bottom: 24px;
+    min-height: 36px;
+    /* Prevents layout shift */
+}
+
+.typing-cursor {
+    display: inline-block;
+    width: 2px;
+    background-color: var(--accent-blue);
+    animation: blink 1s step-end infinite;
+    margin-left: 4px;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
 .about-text {
     max-width: 680px;
-    margin: 0 auto 60px;
+    margin: 0 auto 40px;
     font-size: 15px;
     line-height: 1.8;
     color: var(--text-secondary);
+}
+
+.about-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 60px;
+}
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-pill);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+body.dark-mode .btn-secondary {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:hover {
+    background: var(--bg-light);
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+    transform: translateY(-1px);
+}
+
+body.dark-mode .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .tech-heading {
@@ -399,6 +465,42 @@ body.dark-mode .tech-card:hover {
 /* ===== Projects Section ===== */
 .projects-section {
     padding-bottom: 40px;
+}
+
+/* Project Filters */
+.project-filters {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    background: rgba(248, 249, 250, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-pill);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+body.dark-mode .filter-btn {
+    background: rgba(30, 41, 59, 0.5);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--accent-blue);
+    color: white;
+    border-color: var(--accent-blue);
+    box-shadow: var(--shadow-sm);
 }
 
 /* Featured Project */
@@ -514,6 +616,14 @@ body.dark-mode .tech-card:hover {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+}
+
+.project-item {
+    transition: all 0.4s ease;
+}
+
+.project-item.hidden {
+    display: none;
 }
 
 .project-card {

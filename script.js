@@ -100,3 +100,74 @@ themeToggles.forEach(toggle => {
     });
 });
 
+// ===== Typing Effect =====
+const typingText = document.querySelector('.typing-text');
+const roles = ['Software Developer', 'AI Engineer', 'Tech Enthusiast'];
+let roleIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+let typingDelay = 100;
+
+function type() {
+    if (!typingText) return;
+
+    const currentRole = roles[roleIndex];
+
+    if (isDeleting) {
+        typingText.textContent = currentRole.substring(0, charIndex - 1);
+        charIndex--;
+        typingDelay = 50;
+    } else {
+        typingText.textContent = currentRole.substring(0, charIndex + 1);
+        charIndex++;
+        typingDelay = 100;
+    }
+
+    if (!isDeleting && charIndex === currentRole.length) {
+        typingDelay = 2000; // Pause at end
+        isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+        typingDelay = 500; // Pause before new word
+    }
+
+    setTimeout(type, typingDelay);
+}
+
+// Start typing effect on load
+document.addEventListener('DOMContentLoaded', () => {
+    if (typingText) setTimeout(type, 1000);
+});
+
+// ===== Project Filtering =====
+const filterBtns = document.querySelectorAll('.filter-btn');
+const projectItems = document.querySelectorAll('.project-item');
+
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterBtns.forEach(b => b.classList.remove('active'));
+        // Add active class to clicked button
+        btn.classList.add('active');
+
+        const filterValue = btn.getAttribute('data-filter');
+
+        projectItems.forEach(item => {
+            const categories = item.getAttribute('data-category');
+            if (filterValue === 'all' || (categories && categories.includes(filterValue))) {
+                item.classList.remove('hidden');
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, 50);
+            } else {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    item.classList.add('hidden');
+                }, 400); // Wait for transition
+            }
+        });
+    });
+});

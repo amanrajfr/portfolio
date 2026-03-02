@@ -12,6 +12,7 @@
     <meta property="og:description" content="Software Developer & AI Engineer">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://amanraj.online">
+    <meta property="og:image" content="https://amanraj.online/og-image.jpg">
     <title>Aman Raj - Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
@@ -83,14 +84,25 @@
         <!-- About Section -->
         <section id="about" class="section about-section">
             <h2 class="section-heading">What I do</h2>
+            <div class="about-roles">
+                I am a <span class="typing-text"></span><span class="typing-cursor">|</span>
+            </div>
             <p class="about-text">
-                A passionate Software Developer and AI Engineer with expertise in building
+                A passionate professional with expertise in building
                 modern web applications and intelligent solutions. I specialize in creating
                 production-ready applications using Python, JavaScript, LangChain, and
                 Generative AI models like Google Gemini and OpenAI. Focused on turning ideas
                 into scalable products, automating workflows, and delivering seamless user
                 experiences.
             </p>
+            <div class="about-actions">
+                <a href="#contact" class="btn-primary">
+                    Let's Connect
+                </a>
+                <a href="#" class="btn-secondary" download>
+                    <i class="fas fa-file-download"></i> Download CV
+                </a>
+            </div>
 
             <!-- Tech Stack -->
             <h3 class="tech-heading">Tech I Work With</h3>
@@ -150,8 +162,16 @@
         <section id="projects" class="section projects-section">
             <h2 class="section-heading">Projects</h2>
 
+            <!-- Project Filters -->
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="ai">AI / ML</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="mobile">Mobile</button>
+            </div>
+
             <!-- Featured Project -->
-            <div class="featured-project">
+            <div class="featured-project project-item" data-category="mobile ai">
                 <div class="featured-image">
                     <div class="featured-image-content">
                         <i class="fas fa-rocket featured-icon"></i>
@@ -180,7 +200,7 @@
 
             <!-- Project Grid -->
             <div class="project-grid">
-                <div class="project-card">
+                <div class="project-card project-item" data-category="web">
                     <h4>MediCheck – Health Platform</h4>
                     <p>A comprehensive medical platform for health monitoring and patient management. Built with modern
                         web technologies for seamless user experience.</p>
@@ -188,7 +208,7 @@
                         View Project <i class="fas fa-arrow-up-right-from-square"></i>
                     </a>
                 </div>
-                <div class="project-card">
+                <div class="project-card project-item" data-category="web">
                     <h4>Portfolio Website</h4>
                     <p>A clean, minimalist portfolio built with vanilla HTML, CSS, and JavaScript. Deployed on
                         Cloudflare Pages with custom domain configuration.</p>
@@ -196,7 +216,7 @@
                         View Project <i class="fas fa-arrow-up-right-from-square"></i>
                     </a>
                 </div>
-                <div class="project-card">
+                <div class="project-card project-item" data-category="ai web">
                     <h4>RAG PDF Chat – AI Document Assistant</h4>
                     <p>An AI-powered PDF analysis tool using Retrieval-Augmented Generation with FAISS vector
                         embeddings and Google Gemini for context-aware answers.</p>
